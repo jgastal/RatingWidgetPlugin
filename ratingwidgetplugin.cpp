@@ -16,7 +16,6 @@ RatingWidgetPlugin::RatingWidgetPlugin(QObject *parent) : QObject(parent)
 {
 	initialized = false;
 	pluginIcon = new QIcon(":/icons/fullstar.gif");
-	max = 5;
 }
 
 RatingWidgetPlugin::~RatingWidgetPlugin()
@@ -48,19 +47,12 @@ QString RatingWidgetPlugin::domXml() const
 	str += "   <rect>\n";
 	str += "    <x>0</x>\n";
 	str += "    <y>0</y>\n";
-	str += "    <width>%1</width>\n";
-	str += "    <height>%2</height>\n";
+	str += "    <width>176</width>\n";
+	str += "    <height>32</height>\n";
 	str += "   </rect>\n";
 	str += "  </property>\n";
-	//str += "  <property name=\"max\">\n";
-	//str += "   <number>%3</number>\n";
-	//str += "  </property>\n";
 	str += " </widget>\n";
 	str += "</ui>";
-
-	str.arg((32 + 4) * max); //width
-	str.arg(32 + 8); //height
-	str.arg(max); //max
 
 	return str;
 }
@@ -82,19 +74,17 @@ QString RatingWidgetPlugin::name() const
 
 QString RatingWidgetPlugin::toolTip() const
 {
-	//TODO ?????
 	return "";
 }
 
 QString RatingWidgetPlugin::whatsThis() const
 {
-	//TODO ?????
 	return "";
 }
 
 QWidget* RatingWidgetPlugin::createWidget(QWidget *parent)
 {
-	return new RatingWidget(parent, max);
+	return new RatingWidget(parent);
 }
 
 void RatingWidgetPlugin::initialize(QDesignerFormEditorInterface *core)
@@ -103,12 +93,6 @@ void RatingWidgetPlugin::initialize(QDesignerFormEditorInterface *core)
 		return;
 
 	initialized = true;
-}
-
-void RatingWidgetPlugin::setProperties(QString prop, QVariant value)
-{
-	if(prop == "max")
-		max = value.toInt();
 }
 
 Q_EXPORT_PLUGIN2(RatingWidgetPlugin, RatingWidgetPlugin)

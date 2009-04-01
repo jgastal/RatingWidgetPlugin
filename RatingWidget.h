@@ -2,7 +2,6 @@
 #define RATINGWIDGET_H
 
 #include <QWidget>
-#include <QDesignerCustomWidgetInterface>
 
 class QToolButton;
 class QIcon;

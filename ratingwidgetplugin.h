@@ -29,13 +29,9 @@ class RatingWidgetPlugin : public QObject, public QDesignerCustomWidgetInterface
 		QWidget *createWidget(QWidget *parent);
 		void initialize(QDesignerFormEditorInterface *core);
 
-	protected slots:
-		void setProperties(QString prop, QVariant value);
-
 	private:
 		bool initialized;
 		QIcon *pluginIcon;
-		int max;
 };
 
 #endif // RATINGWIDGETPLUGIN_H

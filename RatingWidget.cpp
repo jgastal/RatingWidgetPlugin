@@ -20,7 +20,8 @@ RatingWidget::RatingWidget(QWidget *parent, int count) : QWidget(parent)
 		layout->addWidget(&(starButton[i]));
 	}
 
-	resize(8 + 32 * max, 32 + 8);
+	//size is 32x32, 32 width + 4 between each button sums up to 35 * buttons
+	resize(35 * max, 32);
 }
 
 RatingWidget::~RatingWidget()
@@ -47,7 +48,8 @@ void RatingWidget::setMax(int count)
 		layout->addWidget(&(starButton[i]));
 	}
 
-	resize(8 + 32 * max, 32 + 8);
+	//size is 32x32, 32 width + 4 between each button sums up to 35 * buttons
+	resize(35 * max, 32);
 }
 
 int RatingWidget::getValue() const
