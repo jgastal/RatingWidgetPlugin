@@ -67,7 +67,7 @@ QString RatingWidgetPlugin::domXml() const
 
 QString RatingWidgetPlugin::group() const
 {
-	return "Custom Widgets";
+	return "Input Widgets";
 }
 
 QString RatingWidgetPlugin::includeFile() const
@@ -101,12 +101,6 @@ void RatingWidgetPlugin::initialize(QDesignerFormEditorInterface *core)
 {
 	if (initialized)
 		return;
-
-	if(!(core->propertyEditor()))
-		cout << "core->propertyEditor() is null" << endl;
-
-	//core->propertyEditor()->setPropertyValue("max", QVariant(5));
-	connect(core->propertyEditor(), SIGNAL(propertyChanged(QString,QVariant)), this, SLOT(setProperties(QString,QVariant)));
 
 	initialized = true;
 }

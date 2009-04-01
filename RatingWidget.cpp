@@ -9,6 +9,7 @@ RatingWidget::RatingWidget(QWidget *parent, int count) : QWidget(parent)
 {
 	max = count;
 	layout = new QHBoxLayout(this);
+	layout->setMargin(0);
 	emptyIcon = new QIcon(":/icons/emptystar.gif");
 	fullIcon = new QIcon(":/icons/fullstar.gif");
 	starButton = new QToolButton[max];
