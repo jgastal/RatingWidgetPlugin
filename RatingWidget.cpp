@@ -56,8 +56,8 @@ int RatingWidget::getValue() const
 {
 	//max is number of buttons, but array indexes start at 0
 	for(int cur = max - 1; cur >= 0; cur--)
-		if(starButton[cur].isDown())
-			return cur++;
+		if(starButton[cur].isChecked())
+			return ++cur;
 	return 0;
 }
 
