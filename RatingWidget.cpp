@@ -8,19 +8,14 @@
 RatingWidget::RatingWidget(QWidget *parent, int count) : QWidget(parent)
 {
 	max = count;
-	QHBoxLayout *layout = new QHBoxLayout(this);
+	layout = new QHBoxLayout(this);
 	emptyIcon = new QIcon(":/icons/emptystar.gif");
 	fullIcon = new QIcon(":/icons/fullstar.gif");
 	starButton = new QToolButton[max];
 
 	for(int i = 0; i < max; i++)
 	{
-		starButton[i].setParent(this);
-		starButton[i].setCheckable(true);
-		starButton[i].setIcon(*emptyIcon);
-		starButton[i].resize(32, 32);
-		connect(&(starButton[i]), SIGNAL(toggled(bool)), this, SLOT(setRating()));
-
+		initButton(&(starButton[i]));
 		layout->addWidget(&(starButton[i]));
 	}
 
@@ -32,6 +27,44 @@ RatingWidget::~RatingWidget()
 	delete emptyIcon;
 	delete fullIcon;
 	delete[] starButton;
+}
+
+int RatingWidget::getMax() const
+{
+	return max;
+}
+
+void RatingWidget::setMax(int count)
+{
+	max = count;
+	delete[] starButton;
+	starButton = new QToolButton[max];
+
+	for(int i = 0; i < max; i++)
+	{
+		initButton(&(starButton[i]));
+		layout->addWidget(&(starButton[i]));
+	}
+
+	resize(8 + 32 * max, 32 + 8);
+}
+
+int RatingWidget::getValue() const
+{
+	//max is number of buttons, but array indexes start at 0
+	for(int cur = max - 1; cur >= 0; cur--)
+		if(starButton[cur].isDown())
+			return cur++;
+	return 0;
+}
+
+void RatingWidget::initButton(QToolButton *bt)
+{
+	bt->setParent(this);
+	bt->setCheckable(true);
+	bt->setIcon(*emptyIcon);
+	bt->resize(32, 32);
+	connect(bt, SIGNAL(toggled(bool)), this, SLOT(setRating()));
 }
 
 void RatingWidget::setRating()

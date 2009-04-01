@@ -7,8 +7,10 @@
 #include <QDesignerPropertyEditorInterface>
 
 #include "ratingwidgetplugin.h"
-
 #include "RatingWidget.h"
+
+#include <iostream>
+using namespace std;
 
 RatingWidgetPlugin::RatingWidgetPlugin(QObject *parent) : QObject(parent)
 {
@@ -50,9 +52,9 @@ QString RatingWidgetPlugin::domXml() const
 	str += "    <height>%2</height>\n";
 	str += "   </rect>\n";
 	str += "  </property>\n";
-	str += "  <property name=\"max\">\n";
-	str += "   <number>%3</number>\n";
-	str += "  </property>\n";
+	//str += "  <property name=\"max\">\n";
+	//str += "   <number>%3</number>\n";
+	//str += "  </property>\n";
 	str += " </widget>\n";
 	str += "</ui>";
 
@@ -92,7 +94,7 @@ QString RatingWidgetPlugin::whatsThis() const
 
 QWidget* RatingWidgetPlugin::createWidget(QWidget *parent)
 {
-	return new RatingWidget(parent);
+	return new RatingWidget(parent, max);
 }
 
 void RatingWidgetPlugin::initialize(QDesignerFormEditorInterface *core)
@@ -100,8 +102,11 @@ void RatingWidgetPlugin::initialize(QDesignerFormEditorInterface *core)
 	if (initialized)
 		return;
 
-	if(core->propertyEditor())
-		connect(core->propertyEditor(), SIGNAL(propertyChanged(QString,QVariant)), this, SLOT(setProperties(QString,QVariant)));
+	if(!(core->propertyEditor()))
+		cout << "core->propertyEditor() is null" << endl;
+
+	//core->propertyEditor()->setPropertyValue("max", QVariant(5));
+	connect(core->propertyEditor(), SIGNAL(propertyChanged(QString,QVariant)), this, SLOT(setProperties(QString,QVariant)));
 
 	initialized = true;
 }
