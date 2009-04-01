@@ -13,6 +13,8 @@
 RatingWidgetPlugin::RatingWidgetPlugin(QObject *parent) : QObject(parent)
 {
 	initialized = false;
+	pluginIcon = new QIcon(":/icons/fullstar.gif");
+	max = 5;
 }
 
 RatingWidgetPlugin::~RatingWidgetPlugin()
@@ -54,9 +56,9 @@ QString RatingWidgetPlugin::domXml() const
 	str += " </widget>\n";
 	str += "</ui>";
 
-	str.arg((32 + 4) * 5); //width
+	str.arg((32 + 4) * max); //width
 	str.arg(32 + 8); //height
-	str.arg(5); //max
+	str.arg(max); //max
 
 	return str;
 }
@@ -98,8 +100,8 @@ void RatingWidgetPlugin::initialize(QDesignerFormEditorInterface *core)
 	if (initialized)
 		return;
 
-	pluginIcon = new QIcon("fullstar.gif");
-	connect(core->propertyEditor(), SIGNAL(propertyChanged(QString,QVariant)), this, SLOT(setProperties(QString,QVariant)));
+	if(core->propertyEditor())
+		connect(core->propertyEditor(), SIGNAL(propertyChanged(QString,QVariant)), this, SLOT(setProperties(QString,QVariant)));
 
 	initialized = true;
 }

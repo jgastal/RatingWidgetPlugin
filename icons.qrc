@@ -1,0 +1,6 @@
+<RCC>
+    <qresource prefix="/icons" >
+        <file>emptystar.gif</file>
+        <file>fullstar.gif</file>
+    </qresource>
+</RCC>
