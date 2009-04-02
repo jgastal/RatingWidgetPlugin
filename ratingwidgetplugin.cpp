@@ -3,14 +3,9 @@
 #include <QIcon>
 #include <QtPlugin>
 #include <QDesignerCustomWidgetInterface>
-#include <QDesignerFormEditorInterface>
-#include <QDesignerPropertyEditorInterface>
 
 #include "ratingwidgetplugin.h"
 #include "RatingWidget.h"
-
-#include <iostream>
-using namespace std;
 
 RatingWidgetPlugin::RatingWidgetPlugin(QObject *parent) : QObject(parent)
 {
