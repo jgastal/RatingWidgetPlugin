@@ -52,13 +52,21 @@ void RatingWidget::setMax(int count)
 	resize(35 * max, 32);
 }
 
-int RatingWidget::getValue() const
+int RatingWidget::getRating() const
 {
-	//max is number of buttons, but array indexes start at 0
-	for(int cur = max - 1; cur >= 0; cur--)
-		if(starButton[cur].isChecked())
-			return ++cur;
-	return 0;
+	return rating;
+}
+
+void RatingWidget::setRating(int r)
+{
+	rating = r;
+	for(int i = 0; i < max; i++)
+	{
+		starButton[i].blockSignals(true);
+		starButton[i].setChecked(i < r);
+		starButton[i].setIcon(i < r?*fullIcon:*emptyIcon);
+		starButton[i].blockSignals(false);
+	}
 }
 
 void RatingWidget::initButton(QToolButton *bt)
@@ -77,12 +85,6 @@ void RatingWidget::setRating()
 	for(cur = 0; cur < max; cur++)
 		if(obj == &(starButton[cur]))
 			break;
-	cur++;
-	for(int i = 0; i < max; i++)
-	{
-		starButton[i].blockSignals(true);
-		starButton[i].setChecked(i < cur);
-		starButton[i].setIcon(i < cur?*fullIcon:*emptyIcon);
-		starButton[i].blockSignals(false);
-	}
+	rating = ++cur;
+	setRating(rating);
 }

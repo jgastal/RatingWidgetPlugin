@@ -18,7 +18,10 @@ class RatingWidget : public QWidget
 		virtual ~RatingWidget();
 		int getMax() const;
 		void setMax(int count);
-		int getValue() const;
+		int getRating() const;
+
+	public slots:
+		void setRating(int r);
 
 	private:
 		void initButton(QToolButton *bt);
@@ -26,6 +29,7 @@ class RatingWidget : public QWidget
 		QIcon *emptyIcon, *fullIcon;
 		QHBoxLayout *layout;
 		int max;
+		int rating;
 
 	private slots:
 		void setRating();
