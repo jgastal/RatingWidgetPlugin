@@ -5,13 +5,15 @@ TARGET = RatingWidgetPlugin
 TEMPLATE = lib
 CONFIG += designer \
     plugin \
-    debug
+    release
 DEFINES += RATINGWIDGETPLUGIN_LIBRARY
 SOURCES += RatingWidget.cpp \
     ratingwidgetplugin.cpp
 HEADERS += RatingWidgetPlugin_global.h \
     RatingWidget.h \
     ratingwidgetplugin.h
-target.path = /home/jokerwww/.kde4/lib/kde4/plugins/designer
-INSTALLS += target
+target.path = $$[QT_INSTALL_PLUGINS]/designer
+headers.path = /usr/include/
+headers.files = $$HEADERS
+INSTALLS += target headers
 RESOURCES += icons.qrc
