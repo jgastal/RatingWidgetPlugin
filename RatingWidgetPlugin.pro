@@ -12,8 +12,8 @@ SOURCES += RatingWidget.cpp \
 HEADERS += RatingWidgetPlugin_global.h \
     RatingWidget.h \
     ratingwidgetplugin.h
-target.path = $$[QT_INSTALL_PLUGINS]/designer
-headers.path = /usr/include/
+target.path = $$[INSTALL_PREFIX]/$$[QT_INSTALL_PLUGINS]/designer
+headers.path = $$[INSTALL_PREFIX]/usr/include/
 headers.files = $$HEADERS
 INSTALLS += target headers
 RESOURCES += icons.qrc
