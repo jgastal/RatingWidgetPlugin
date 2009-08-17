@@ -23,9 +23,11 @@
 #include <QObject>
 #include <QDesignerCustomWidgetInterface>
 
+#include "RatingWidgetPlugin_global.h"
+
 class QIcon;
 
-class RatingWidgetPlugin : public QObject, public QDesignerCustomWidgetInterface
+class RATINGWIDGETPLUGINSHARED_EXPORT RatingWidgetPlugin : public QObject, public QDesignerCustomWidgetInterface
 {
 	Q_OBJECT
 	Q_INTERFACES(QDesignerCustomWidgetInterface)

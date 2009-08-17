@@ -21,11 +21,13 @@
 
 #include <QWidget>
 
+#include "RatingWidgetPlugin_global.h"
+
 class QToolButton;
 class QIcon;
 class QHBoxLayout;
 
-class RatingWidget : public QWidget
+class RATINGWIDGETPLUGINSHARED_EXPORT RatingWidget : public QWidget
 {
 	Q_OBJECT
 
